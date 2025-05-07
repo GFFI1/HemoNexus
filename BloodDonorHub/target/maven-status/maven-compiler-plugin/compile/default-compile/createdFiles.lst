@@ -34,6 +34,7 @@ com\hemonexus\repository\DonationRepository.class
 com\hemonexus\model\Donation.class
 com\hemonexus\exception\ResourceNotFoundException.class
 com\hemonexus\repository\BloodInventoryRepository.class
+com\hemonexus\controller\AuthController.class
 com\hemonexus\exception\ErrorDetails.class
 com\hemonexus\repository\DonorRepository.class
 com\hemonexus\model\User.class
