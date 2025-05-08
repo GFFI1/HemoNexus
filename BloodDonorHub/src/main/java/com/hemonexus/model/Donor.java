@@ -56,6 +56,8 @@ public class Donor {
     private Boolean isEligible = true;
     private String medicalNotes;
     private LocalDate lastDonationDate;
+
+    @Column(nullable = false, columnDefinition = "int default 0")
     private Integer totalDonations = 0;
 
     @OneToMany(mappedBy = "donor", cascade = CascadeType.ALL, orphanRemoval = true)

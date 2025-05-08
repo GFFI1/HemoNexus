@@ -71,7 +71,8 @@ public class BloodBankService {
     public Optional<BloodBankDTO> toggleBloodBankStatus(Long id) {
         return bloodBankRepository.findById(id)
                 .map(bloodBank -> {
-                    bloodBank.setIsActive(!bloodBank.getIsActive());
+                    boolean current = Boolean.TRUE.equals(bloodBank.getIsActive());
+                    bloodBank.setIsActive(!current);
                     return convertToDTO(bloodBankRepository.save(bloodBank));
                 });
     }

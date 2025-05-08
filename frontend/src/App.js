@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { useSelector } from 'react-redux';
+import { RequireAuth } from "./components/RequireAuth";
+
 
 // Layouts
 import MainLayout from './layouts/MainLayout';
