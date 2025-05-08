@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - HemoNexus</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <style>
+        .error-container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .error-code {
+            font-size: 72px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+        .error-message {
+            font-size: 24px;
+            margin-bottom: 30px;
+        }
+        .error-details {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: left;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">HemoNexus</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="error-container">
+            <div class="error-code" th:text="${status ?: 'Error'}">500</div>
+            
+            <div class="error-message" th:text="${message ?: 'Something went wrong'}">
+                Internal Server Error
+            </div>
+            
+            <a href="/" class="btn-primary">Go to Homepage</a>
+            
+            <div class="error-details" th:if="${trace}">
+                <h3>Error Details:</h3>
+                <pre th:text="${trace}"></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 HemoNexus. All rights reserved.</p>
+            <p>Created by GFFI1</p>
+        </div>
+    </footer>
+</body>
+</html>
