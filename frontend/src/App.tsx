@@ -6,6 +6,8 @@ import Register from "@/pages/Register";
 import AppLayout from "@/layouts/AppLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import NotFound from "@/pages/NotFound"; // Create a NotFound component
+import RequestList   from "@/pages/admin/RequestList";
+import NewRequest    from "@/pages/requester/NewRequest";
 
 export default function App() {
   return (
@@ -23,6 +25,8 @@ export default function App() {
           </Route>
           {/* Fallback route for 404 */}
           <Route path="*" element={<NotFound />} />
+          <Route path="requests" element={<RequestList/>}/>
+          <Route path="new-request" element={<NewRequest/>}/>
         </Routes>
       </BrowserRouter>
     </AuthProvider>

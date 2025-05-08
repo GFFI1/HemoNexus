@@ -1,13 +1,11 @@
 package com.hemonexus.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,54 +15,40 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class BloodRequest {
+
+    public enum Urgency {
+        LOW, MEDIUM, HIGH, CRITICAL
+    }
+
+    public enum Status {
+        PENDING, MATCHED, FULFILLED, CANCELLED
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "blood_bank_id", nullable = false)
-    private BloodBank bloodBank;
-
-    @Column(nullable = false)
-    private String patientName;
-
-    private String patientId;
-    private Integer patientAge;
-    private String patientGender;
+    @JoinColumn(name = "requester_id", nullable = false)
+    private User requester; // => ROLE_REQUESTER
 
     @Column(nullable = false)
     private String bloodType;
-
     @Column(nullable = false)
-    private Double quantityRequested; // in milliliters
-
-    private Double quantityFulfilled = 0.0;
-
-    @Column(nullable = false)
-    private LocalDateTime requiredBy;
-
-    @Column(nullable = false)
-    private String requesterName;
-
-    private String requesterContact;
-    private String hospitalName;
-    private String purpose;
-    private String urgencyLevel;
-    private String notes;
+    private Integer unitsNeeded;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private RequestStatus status = RequestStatus.PENDING;
+    private Urgency urgencyLevel = Urgency.LOW;
+
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.PENDING;
+
+    private String hospitalName;
+    private String location;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdAt;
-
     @LastModifiedDate
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
-
-    public enum RequestStatus {
-        PENDING, APPROVED, REJECTED, PARTIALLY_FULFILLED, FULFILLED, CANCELLED, EXPIRED
-    }
 }
