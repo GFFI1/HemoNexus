@@ -5,6 +5,7 @@ import Login from "@/pages/Login";
 import Register from "@/pages/Register";
 import AppLayout from "@/layouts/AppLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
+import NotFound from "@/pages/NotFound"; // Create a NotFound component
 
 export default function App() {
   return (
@@ -20,6 +21,8 @@ export default function App() {
               {/* add InventoryList, DonorList pages here later */}
             </Route>
           </Route>
+          {/* Fallback route for 404 */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
