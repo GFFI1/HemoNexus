@@ -1,42 +1,24 @@
 package com.hemonexus.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.hemonexus.model.BloodRequest.Status;
+import com.hemonexus.model.BloodRequest.Urgency;
+import lombok.*;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
-import java.time.LocalDateTime;
+import jakarta.validation.constraints.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class BloodRequestDTO {
     private Long id;
-
     @NotNull
-    private Long bloodBankId;
-
+    private Long requesterId;
     @NotBlank
     private String bloodType;
-
-    @NotNull
     @Positive
-    private Integer quantityML;
-
-    @NotNull
-    private LocalDateTime requestDate;
-
-    private LocalDateTime requiredBy;
-    private String priority;
-    private String patientName;
-
-    @Size(max = 500)
-    private String reason;
-
-    private String status;
-    private Integer fulfilledQuantityML;
-    private String bloodBankName;
+    private Integer unitsNeeded;
+    private Urgency urgencyLevel;
+    private Status status;
+    private String hospitalName;
+    private String location;
 }

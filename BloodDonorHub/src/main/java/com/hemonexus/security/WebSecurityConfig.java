@@ -69,6 +69,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/", "/index.html", "/css/**", "/js/**", "/images/**", "/favicon.ico")
                         .permitAll()
                         .requestMatchers("/actuator/**").permitAll()
+                        .requestMatchers("/blood-requests/**").hasAnyRole("ADMIN", "REQUESTER")
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers("/h2-console/**").permitAll()
                         .anyRequest().authenticated());
