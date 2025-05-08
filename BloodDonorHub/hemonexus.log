@@ -92,3 +92,246 @@
 2025-05-08T12:31:16.116+01:00  INFO 11776 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-05-08T12:31:16.184+01:00  INFO 11776 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-05-08T12:31:16.205+01:00  INFO 11776 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-08T13:59:29.324+01:00  INFO 33908 --- [main] com.hemonexus.HemoNexusApplication       : Starting HemoNexusApplication using Java 21.0.6 with PID 33908 (C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub\target\classes started by USER in C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub)
+2025-05-08T13:59:29.329+01:00 DEBUG 33908 --- [main] com.hemonexus.HemoNexusApplication       : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-08T13:59:29.330+01:00  INFO 33908 --- [main] com.hemonexus.HemoNexusApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-05-08T13:59:30.989+01:00  INFO 33908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-08T13:59:31.124+01:00  INFO 33908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 122 ms. Found 8 JPA repository interfaces.
+2025-05-08T13:59:32.297+01:00  INFO 33908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-08T13:59:32.314+01:00  INFO 33908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-08T13:59:32.315+01:00  INFO 33908 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-08T13:59:32.408+01:00  INFO 33908 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-05-08T13:59:32.409+01:00  INFO 33908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3005 ms
+2025-05-08T13:59:32.825+01:00  INFO 33908 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-08T13:59:32.944+01:00  INFO 33908 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-08T13:59:33.010+01:00  INFO 33908 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-08T13:59:33.423+01:00  INFO 33908 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-08T13:59:33.475+01:00  INFO 33908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-08T13:59:33.868+01:00  INFO 33908 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@776d8097
+2025-05-08T13:59:33.870+01:00  INFO 33908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-08T13:59:34.010+01:00  WARN 33908 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-08T13:59:34.011+01:00  WARN 33908 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-08T13:59:34.040+01:00  INFO 33908 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-08T13:59:36.641+01:00  INFO 33908 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-08T13:59:37.088+01:00  INFO 33908 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T13:59:37.744+01:00 DEBUG 33908 --- [main] c.h.security.jwt.AuthTokenFilter         : Filter 'authenticationJwtTokenFilter' configured for use
+2025-05-08T13:59:37.958+01:00  INFO 33908 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-05-08T13:59:37.959+01:00  WARN 33908 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-05-08T13:59:38.080+01:00  INFO 33908 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-08T13:59:40.901+01:00  WARN 33908 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-08T13:59:41.086+01:00  INFO 33908 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-05-08T13:59:41.579+01:00  INFO 33908 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2025-05-08T13:59:42.447+01:00  INFO 33908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-05-08T13:59:42.458+01:00  INFO 33908 --- [main] com.hemonexus.HemoNexusApplication       : Started HemoNexusApplication in 13.806 seconds (process running for 14.427)
+2025-05-08T14:01:08.225+01:00  INFO 33908 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08T14:01:08.226+01:00  INFO 33908 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-08T14:01:08.232+01:00  INFO 33908 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2025-05-08T14:01:08.349+01:00 ERROR 33908 --- [http-nio-8080-exec-1] c.h.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource
+2025-05-08T14:24:07.186+01:00  INFO 33908 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08T14:24:07.221+01:00  INFO 33908 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-08T14:24:07.257+01:00  INFO 33908 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T14:24:07.272+01:00  INFO 33908 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-08T14:24:07.312+01:00  INFO 33908 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-08T14:24:34.352+01:00  INFO 4960 --- [main] com.hemonexus.HemoNexusApplication       : Starting HemoNexusApplication using Java 21.0.6 with PID 4960 (C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub\target\classes started by USER in C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub)
+2025-05-08T14:24:34.357+01:00 DEBUG 4960 --- [main] com.hemonexus.HemoNexusApplication       : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-08T14:24:34.358+01:00  INFO 4960 --- [main] com.hemonexus.HemoNexusApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-05-08T14:24:36.869+01:00  INFO 4960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-08T14:24:37.385+01:00  INFO 4960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 486 ms. Found 8 JPA repository interfaces.
+2025-05-08T14:24:40.123+01:00  INFO 4960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-08T14:24:40.169+01:00  INFO 4960 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-08T14:24:40.171+01:00  INFO 4960 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-08T14:24:41.241+01:00  INFO 4960 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-05-08T14:24:41.255+01:00  INFO 4960 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6829 ms
+2025-05-08T14:24:42.083+01:00  INFO 4960 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-08T14:24:42.188+01:00  INFO 4960 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-08T14:24:42.256+01:00  INFO 4960 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-08T14:24:42.655+01:00  INFO 4960 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-08T14:24:42.706+01:00  INFO 4960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-08T14:24:43.001+01:00  INFO 4960 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1df32c09
+2025-05-08T14:24:43.006+01:00  INFO 4960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-08T14:24:43.110+01:00  WARN 4960 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-08T14:24:43.113+01:00  WARN 4960 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-08T14:24:43.144+01:00  INFO 4960 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-08T14:24:44.554+01:00  INFO 4960 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-08T14:24:44.980+01:00  INFO 4960 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T14:24:45.507+01:00 DEBUG 4960 --- [main] c.h.security.jwt.AuthTokenFilter         : Filter 'authenticationJwtTokenFilter' configured for use
+2025-05-08T14:24:45.647+01:00  INFO 4960 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-05-08T14:24:45.648+01:00  WARN 4960 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-05-08T14:24:45.741+01:00  INFO 4960 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-08T14:24:48.331+01:00  WARN 4960 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-08T14:24:48.487+01:00  INFO 4960 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-05-08T14:24:49.024+01:00  INFO 4960 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2025-05-08T14:24:49.934+01:00  INFO 4960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-05-08T14:24:49.948+01:00  INFO 4960 --- [main] com.hemonexus.HemoNexusApplication       : Started HemoNexusApplication in 18.639 seconds (process running for 19.403)
+2025-05-08T14:26:05.710+01:00  INFO 4960 --- [http-nio-8080-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08T14:26:05.711+01:00  INFO 4960 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-08T14:26:05.714+01:00  INFO 4960 --- [http-nio-8080-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-05-08T14:26:05.761+01:00 ERROR 4960 --- [http-nio-8080-exec-3] c.h.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource
+2025-05-08T14:29:11.720+01:00  INFO 4960 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08T14:29:11.726+01:00  INFO 4960 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-08T14:29:11.738+01:00  INFO 4960 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T14:29:11.741+01:00  INFO 4960 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-08T14:29:11.756+01:00  INFO 4960 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-08T14:29:30.885+01:00  INFO 9360 --- [main] com.hemonexus.HemoNexusApplication       : Starting HemoNexusApplication using Java 21.0.6 with PID 9360 (C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub\target\classes started by USER in C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub)
+2025-05-08T14:29:30.886+01:00 DEBUG 9360 --- [main] com.hemonexus.HemoNexusApplication       : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-08T14:29:30.887+01:00  INFO 9360 --- [main] com.hemonexus.HemoNexusApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-05-08T14:29:33.635+01:00  INFO 9360 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-08T14:29:33.758+01:00  INFO 9360 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 107 ms. Found 8 JPA repository interfaces.
+2025-05-08T14:29:34.742+01:00  INFO 9360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-08T14:29:34.766+01:00  INFO 9360 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-08T14:29:34.767+01:00  INFO 9360 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-08T14:29:34.862+01:00  INFO 9360 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-05-08T14:29:34.862+01:00  INFO 9360 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3929 ms
+2025-05-08T14:29:35.224+01:00  INFO 9360 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-08T14:29:35.341+01:00  INFO 9360 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-08T14:29:35.399+01:00  INFO 9360 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-08T14:29:35.779+01:00  INFO 9360 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-08T14:29:35.831+01:00  INFO 9360 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-08T14:29:36.022+01:00  INFO 9360 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7be859de
+2025-05-08T14:29:36.026+01:00  INFO 9360 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-08T14:29:36.140+01:00  WARN 9360 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-08T14:29:36.143+01:00  WARN 9360 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-08T14:29:36.173+01:00  INFO 9360 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-08T14:29:37.655+01:00  INFO 9360 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-08T14:29:37.912+01:00  INFO 9360 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T14:29:38.326+01:00 DEBUG 9360 --- [main] c.h.security.jwt.AuthTokenFilter         : Filter 'authenticationJwtTokenFilter' configured for use
+2025-05-08T14:29:38.456+01:00  INFO 9360 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-05-08T14:29:38.459+01:00  WARN 9360 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-05-08T14:29:38.547+01:00  INFO 9360 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-08T14:29:41.022+01:00  WARN 9360 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-08T14:29:41.150+01:00  INFO 9360 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-05-08T14:29:41.536+01:00  INFO 9360 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2025-05-08T14:29:42.409+01:00  INFO 9360 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-05-08T14:29:42.424+01:00  INFO 9360 --- [main] com.hemonexus.HemoNexusApplication       : Started HemoNexusApplication in 12.104 seconds (process running for 12.474)
+2025-05-08T14:30:00.185+01:00  INFO 9360 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08T14:30:00.186+01:00  INFO 9360 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-08T14:30:00.189+01:00  INFO 9360 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-05-08T14:30:28.791+01:00  INFO 9360 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08T14:30:28.795+01:00  INFO 9360 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-08T14:30:28.800+01:00  INFO 9360 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T14:30:28.802+01:00  INFO 9360 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-08T14:30:28.809+01:00  INFO 9360 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-08T14:30:47.428+01:00  INFO 20632 --- [main] com.hemonexus.HemoNexusApplication       : Starting HemoNexusApplication using Java 21.0.6 with PID 20632 (C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub\target\classes started by USER in C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub)
+2025-05-08T14:30:47.430+01:00 DEBUG 20632 --- [main] com.hemonexus.HemoNexusApplication       : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-08T14:30:47.431+01:00  INFO 20632 --- [main] com.hemonexus.HemoNexusApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-05-08T14:30:49.836+01:00  INFO 20632 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-08T14:30:49.932+01:00  INFO 20632 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 87 ms. Found 8 JPA repository interfaces.
+2025-05-08T14:30:50.692+01:00  INFO 20632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-08T14:30:50.705+01:00  INFO 20632 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-08T14:30:50.706+01:00  INFO 20632 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-08T14:30:50.757+01:00  INFO 20632 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-05-08T14:30:50.757+01:00  INFO 20632 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3291 ms
+2025-05-08T14:30:51.038+01:00  INFO 20632 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-08T14:30:51.080+01:00  INFO 20632 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-08T14:30:51.107+01:00  INFO 20632 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-08T14:30:51.312+01:00  INFO 20632 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-08T14:30:51.337+01:00  INFO 20632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-08T14:30:51.465+01:00  INFO 20632 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@40fcaae7
+2025-05-08T14:30:51.467+01:00  INFO 20632 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-08T14:30:51.503+01:00  WARN 20632 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-08T14:30:51.504+01:00  WARN 20632 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-08T14:30:51.518+01:00  INFO 20632 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-08T14:30:52.553+01:00  INFO 20632 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-08T14:30:52.691+01:00  INFO 20632 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T14:30:53.105+01:00 DEBUG 20632 --- [main] c.h.security.jwt.AuthTokenFilter         : Filter 'authenticationJwtTokenFilter' configured for use
+2025-05-08T14:30:53.207+01:00  INFO 20632 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-05-08T14:30:53.207+01:00  WARN 20632 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-05-08T14:30:53.259+01:00  INFO 20632 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-08T14:30:55.134+01:00  WARN 20632 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-08T14:30:55.223+01:00  INFO 20632 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-05-08T14:30:55.574+01:00  INFO 20632 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2025-05-08T14:30:56.261+01:00  INFO 20632 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-05-08T14:30:56.269+01:00  INFO 20632 --- [main] com.hemonexus.HemoNexusApplication       : Started HemoNexusApplication in 9.209 seconds (process running for 9.495)
+2025-05-08T14:31:07.264+01:00  INFO 20632 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08T14:31:07.264+01:00  INFO 20632 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-08T14:31:07.265+01:00  INFO 20632 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-05-08T16:18:45.732+01:00  WARN 20632 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=30m30s528ms28µs200ns).
+2025-05-08T16:52:16.935+01:00  WARN 20632 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m58s25ms824µs700ns).
+2025-05-08T18:10:55.692+01:00 ERROR 20632 --- [http-nio-8080-exec-3] c.h.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource
+2025-05-08T18:11:03.903+01:00 ERROR 20632 --- [http-nio-8080-exec-7] com.hemonexus.security.jwt.JwtUtils      : JWT token is expired: JWT expired at 2025-05-08T16:44:33Z. Current time: 2025-05-08T17:11:03Z, a difference of 1590887 milliseconds.  Allowed clock skew: 0 milliseconds.
+2025-05-08T18:12:15.109+01:00  WARN 20632 --- [http-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
+2025-05-08T18:12:15.110+01:00 ERROR 20632 --- [http-nio-8080-exec-4] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'total_donations' cannot be null
+2025-05-08T18:13:23.131+01:00  WARN 20632 --- [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
+2025-05-08T18:13:23.132+01:00 ERROR 20632 --- [http-nio-8080-exec-10] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'total_donations' cannot be null
+2025-05-08T18:13:56.140+01:00  WARN 20632 --- [http-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
+2025-05-08T18:13:56.144+01:00 ERROR 20632 --- [http-nio-8080-exec-9] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'total_donations' cannot be null
+2025-05-08T18:14:27.539+01:00  WARN 20632 --- [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1048, SQLState: 23000
+2025-05-08T18:14:27.540+01:00 ERROR 20632 --- [http-nio-8080-exec-3] o.h.engine.jdbc.spi.SqlExceptionHelper   : Column 'total_donations' cannot be null
+2025-05-08T18:14:46.718+01:00  WARN 20632 --- [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : SQL Error: 1062, SQLState: 23000
+2025-05-08T18:14:46.722+01:00 ERROR 20632 --- [http-nio-8080-exec-6] o.h.engine.jdbc.spi.SqlExceptionHelper   : Duplicate entry 'emma@example.com' for key 'donors.UKnd8hep05at6gvti74686j88t3'
+2025-05-08T18:16:52.966+01:00 ERROR 20632 --- [http-nio-8080-exec-8] c.h.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource
+2025-05-08T18:39:27.068+01:00  INFO 20632 --- [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-05-08T18:39:27.136+01:00  INFO 20632 --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-05-08T18:39:27.287+01:00  INFO 20632 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T18:39:27.338+01:00  INFO 20632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-05-08T18:39:27.355+01:00  INFO 20632 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-05-08T18:39:48.653+01:00  INFO 10512 --- [main] com.hemonexus.HemoNexusApplication       : Starting HemoNexusApplication using Java 21.0.6 with PID 10512 (C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub\target\classes started by USER in C:\Users\USER\Desktop\javacode\HemoNexus\BloodDonorHub)
+2025-05-08T18:39:48.665+01:00 DEBUG 10512 --- [main] com.hemonexus.HemoNexusApplication       : Running with Spring Boot v3.4.5, Spring v6.2.6
+2025-05-08T18:39:48.669+01:00  INFO 10512 --- [main] com.hemonexus.HemoNexusApplication       : No active profile set, falling back to 1 default profile: "default"
+2025-05-08T18:39:51.351+01:00  INFO 10512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-05-08T18:39:51.478+01:00  INFO 10512 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 116 ms. Found 8 JPA repository interfaces.
+2025-05-08T18:39:52.748+01:00  INFO 10512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-05-08T18:39:52.777+01:00  INFO 10512 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-05-08T18:39:52.778+01:00  INFO 10512 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-05-08T18:39:52.906+01:00  INFO 10512 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring embedded WebApplicationContext
+2025-05-08T18:39:52.907+01:00  INFO 10512 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3792 ms
+2025-05-08T18:39:53.306+01:00  INFO 10512 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-05-08T18:39:53.424+01:00  INFO 10512 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-05-08T18:39:53.479+01:00  INFO 10512 --- [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-05-08T18:39:53.884+01:00  INFO 10512 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-05-08T18:39:53.947+01:00  INFO 10512 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-05-08T18:39:54.272+01:00  INFO 10512 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@776d8097
+2025-05-08T18:39:54.295+01:00  INFO 10512 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-05-08T18:39:54.386+01:00  WARN 10512 --- [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-05-08T18:39:54.387+01:00  WARN 10512 --- [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-05-08T18:39:54.409+01:00  INFO 10512 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-05-08T18:40:00.596+01:00  INFO 10512 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-05-08T18:40:01.941+01:00  INFO 10512 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-05-08T18:40:02.509+01:00 DEBUG 10512 --- [main] c.h.security.jwt.AuthTokenFilter         : Filter 'authenticationJwtTokenFilter' configured for use
+2025-05-08T18:40:02.691+01:00  INFO 10512 --- [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-05-08T18:40:02.692+01:00  WARN 10512 --- [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-05-08T18:40:02.780+01:00  INFO 10512 --- [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-05-08T18:40:05.496+01:00  WARN 10512 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-05-08T18:40:05.668+01:00  INFO 10512 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-05-08T18:40:06.253+01:00  INFO 10512 --- [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2025-05-08T18:40:07.208+01:00  INFO 10512 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/api'
+2025-05-08T18:40:07.220+01:00  INFO 10512 --- [main] com.hemonexus.HemoNexusApplication       : Started HemoNexusApplication in 19.573 seconds (process running for 20.128)
+2025-05-08T18:42:23.676+01:00  INFO 10512 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/api]    : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-08T18:42:23.678+01:00  INFO 10512 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-05-08T18:42:23.684+01:00  INFO 10512 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2025-05-08T18:42:23.810+01:00 ERROR 10512 --- [http-nio-8080-exec-1] c.h.security.jwt.AuthEntryPointJwt       : Unauthorized error: Full authentication is required to access this resource
