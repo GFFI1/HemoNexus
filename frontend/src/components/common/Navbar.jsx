@@ -1,35 +1,38 @@
-import { AppBar, Toolbar, Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { getRole } from '../../utils/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '@/context/AuthContext';
+import { Button } from '@/components/ui/button';
 
 export default function Navbar() {
-  const role = getRole();
+  const { role, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
-    <AppBar position="static">
-      <Toolbar sx={{ gap: 2 }}>
-        {role === 'ROLE_ADMIN' && (
-          <>
-            <Button component={Link} to="/admin/dashboard">Dashboard</Button>
-            <Button component={Link} to="/admin/donors">Donors</Button>
-            <Button component={Link} to="/admin/inventory">Inventory</Button>
-            <Button component={Link} to="/admin/requests">Requests</Button>
-          </>
-        )}
-        {role === 'ROLE_DONOR' && (
-          <>
-            <Button component={Link} to="/donor/dashboard">Dashboard</Button>
-            <Button component={Link} to="/donor/schedule">Schedule</Button>
-            <Button component={Link} to="/donor/history">History</Button>
-          </>
-        )}
-        {role === 'ROLE_REQUESTER' && (
-          <>
-            <Button component={Link} to="/requester/dashboard">Dashboard</Button>
-            <Button component={Link} to="/requester/new">New Request</Button>
-            <Button component={Link} to="/requester/status">Status</Button>
-          </>
-        )}
-      </Toolbar>
-    </AppBar>
+    <nav className="flex gap-4 p-4 bg-gray-800 text-white">
+      {role === 'ROLE_ADMIN' && (
+        <>
+          <Link to="/admin/dashboard">Dashboard</Link>
+          <Link to="/admin/requests">Requests</Link>
+        </>
+      )}
+      {role === 'ROLE_DONOR' && (
+        <>
+          <Link to="/donor/dashboard">Dashboard</Link>
+          <Link to="/donor/history">History</Link>
+        </>
+      )}
+      {role === 'ROLE_REQUESTER' && (
+        <>
+          <Link to="/requester/dashboard">Dashboard</Link>
+          <Link to="/requester/status">Status</Link>
+        </>
+      )}
+      {/* always show logout on the right */}
+      {role && <Button onClick={handleLogout} className="ml-auto">Logout</Button>}
+    </nav>
   );
 }

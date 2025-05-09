@@ -1,23 +1,25 @@
-import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
-import api from "@/api";
+import React, { useEffect, useState } from 'react';
+import api from '@/api';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-export default function DonorList() {
-  const [rows, setRows] = useState([]);
-  useEffect(() => {
-    api.get("/donors").then(r => setRows(r.data.content ?? []));
-  }, []);
-  const cols = [
-    { field:"id", headerName:"ID", width:70 },
-    { field:"firstName", headerName:"First", width:130 },
-    { field:"lastName", headerName:"Last", width:130 },
-    { field:"bloodType", headerName:"Type", width:90 },
-    { field:"eligible", headerName:"Eligible", width:100 }
+type Row={id:number; username:string; bloodType:string; lastDonation:string};
+
+export default function DonorList(){
+  const [rows,setRows]=useState<Row[]>([]);
+  useEffect(()=>{ api.get('/admin/donors').then(r=>setRows(r.data)); },[]);
+
+  const cols:GridColDef[]=[
+    {field:'username',headerName:'Name',width:140,editable:true},
+    {field:'bloodType',headerName:'Type',width:90,editable:true},
+    {field:'lastDonation',headerName:'Last Donation',width:140,editable:true}
   ];
-  return (
-    <section className="space-y-4">
-      <h2 className="text-xl font-semibold">Donors</h2>
-      <DataGrid rows={rows} columns={cols} autoHeight pageSizeOptions={[10]} />
-    </section>
-  );
+
+  const process=(params:any)=> api.put(`/admin/donors/${params.id}`,{[params.field]:params.value});
+
+  return (<section className="p-6">
+    <h1 className="text-2xl font-semibold mb-4">Donors</h1>
+    <DataGrid rows={rows} columns={cols} autoHeight
+              processRowUpdate={process}
+              pageSizeOptions={[5,10,25]} paginationModel={{pageSize:10,page:0}}/>
+  </section>);
 }

@@ -1,32 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import api from '@/api';
 
-const fake = [
-  { id: 1, blood: 'O-', units: 2, status: 'Pending' },
-  { id: 2, blood: 'A+', units: 1, status: 'Fulfilled' }
-];
+type Row = { id:number; bloodType:string; units:number; status:string };
 
-const RequestStatus: React.FC = () => (
-  <section className="p-6">
-    <h1 className="text-2xl font-semibold mb-4">My Requests</h1>
-    <table className="min-w-full border rounded">
-      <thead className="bg-gray-50">
-        <tr>
-          <th className="px-3 py-2 text-left">Blood</th>
-          <th className="px-3 py-2 text-left">Units</th>
-          <th className="px-3 py-2 text-left">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {fake.map(r=>(
-          <tr key={r.id} className="even:bg-gray-50">
-            <td className="px-3 py-2">{r.blood}</td>
-            <td className="px-3 py-2">{r.units}</td>
-            <td className="px-3 py-2">{r.status}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </section>
-);
+export default function RequestStatus() {
+  const [rows, setRows] = useState<Row[]>([]);
 
-export default RequestStatus;
+  const pull = () => api.get('/requester/requests').then(r => setRows(r.data));
+  useEffect(() => { pull(); const id = setInterval(pull, 30_000); return () => clearInterval(id); }, []);
+
+  const cols: GridColDef[] = [
+    { field:'bloodType', headerName:'Type', width:110 },
+    { field:'units', headerName:'Units', width:90 },
+    { field:'status', headerName:'Status', width:130 }
+  ];
+
+  return (
+    <section className="p-6">
+      <h1 className="text-2xl font-semibold mb-4">My Requests</h1>
+<DataGrid
+  rows={rows}
+  columns={cols}
+  autoHeight
+  pageSizeOptions={[5, 10, 25]}
+  paginationModel={{ pageSize: 10, page: 0 }}
+/>
+    </section>
+  );
+}

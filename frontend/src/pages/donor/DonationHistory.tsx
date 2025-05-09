@@ -1,32 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import api from '@/api';
 
-const fakeRows = [
-  { id: 1, date: '2025-02-11', location: 'St Mary Hospital', units: 1 },
-  { id: 2, date: '2024-10-08', location: 'Blood Drive – Uni', units: 1 }
-];
+type Row = { id:number; date:string; location:string; units:number };
 
-const DonationHistory: React.FC = () => (
-  <section className="p-6">
-    <h1 className="text-2xl font-semibold mb-4">Donation History</h1>
-    <table className="min-w-full border rounded">
-      <thead className="bg-gray-50">
-        <tr>
-          <th className="px-3 py-2 text-left">Date</th>
-          <th className="px-3 py-2 text-left">Location</th>
-          <th className="px-3 py-2 text-left">Units</th>
-        </tr>
-      </thead>
-      <tbody>
-        {fakeRows.map(r=>(
-          <tr key={r.id} className="even:bg-gray-50">
-            <td className="px-3 py-2">{r.date}</td>
-            <td className="px-3 py-2">{r.location}</td>
-            <td className="px-3 py-2">{r.units}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </section>
-);
+export default function DonationHistory() {
+  const [rows, setRows] = useState<Row[]>([]);
 
-export default DonationHistory;
+  const fetchRows = () => api.get('/donor/history').then(r => setRows(r.data));
+  useEffect(() => { fetchRows(); const id = setInterval(fetchRows, 30_000); return () => clearInterval(id); }, []);
+
+  const cols: GridColDef[] = [
+    { field:'date', headerName:'Date', width:120 },
+    { field:'location', headerName:'Location', width:220 },
+    { field:'units', headerName:'Units', width:90 }
+  ];
+
+  return (
+    <section className="p-6">
+      <h1 className="text-2xl font-semibold mb-4">Donation History</h1>
+      <DataGrid
+        rows={rows}
+        columns={cols}
+        autoHeight
+        pageSizeOptions={[5, 10, 25]}
+        paginationModel={{ pageSize: 10, page: 0 }}
+      />
+    </section>
+  );
+}

@@ -3,8 +3,11 @@ com\hemonexus\repository\RoleRepository.class
 com\hemonexus\security\jwt\JwtUtils.class
 com\hemonexus\config\OpenApiConfig.class
 com\hemonexus\dto\DonationDTO.class
+com\hemonexus\dto\DonorDTO$DonorDTOBuilder.class
 com\hemonexus\controller\UserController.class
+com\hemonexus\service\UserServiceImpl.class
 com\hemonexus\exception\GlobalExceptionHandler.class
+com\hemonexus\controller\AdminController.class
 com\hemonexus\dto\LoginDTO.class
 com\hemonexus\security\jwt\AuthEntryPointJwt.class
 com\hemonexus\controller\BloodBankController.class
@@ -34,6 +37,7 @@ com\hemonexus\security\services\UserDetailsServiceImpl.class
 com\hemonexus\security\WebSecurityConfig.class
 com\hemonexus\repository\DonationRepository.class
 com\hemonexus\model\Donation.class
+com\hemonexus\dto\StatusDTO.class
 com\hemonexus\exception\ResourceNotFoundException.class
 com\hemonexus\repository\BloodInventoryRepository.class
 com\hemonexus\controller\AuthController.class
@@ -43,10 +47,12 @@ com\hemonexus\repository\DonorRepository.class
 com\hemonexus\model\User.class
 com\hemonexus\service\BloodInventoryService.class
 com\hemonexus\model\ERole.class
+com\hemonexus\dto\RequesterDTO.class
 com\hemonexus\dto\UserDTO.class
 com\hemonexus\security\jwt\AuthTokenFilter.class
 com\hemonexus\model\BloodBank.class
 com\hemonexus\model\Donation$DonationStatus.class
+com\hemonexus\dto\RequesterDTO$RequesterDTOBuilder.class
 com\hemonexus\model\DonorEligibilityCheck.class
 com\hemonexus\config\SetupDataLoader.class
 com\hemonexus\dto\BloodBankDTO.class
