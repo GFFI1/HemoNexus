@@ -28,6 +28,10 @@ public class BloodRequest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "blood_bank_id", nullable = false)
+    private BloodBank bloodBank;
+
     @ManyToOne
     @JoinColumn(name = "requester_id", nullable = false)
     private User requester; // => ROLE_REQUESTER

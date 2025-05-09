@@ -1,5 +1,15 @@
 package com.hemonexus.repository;
 
-public interface BloodRequestRepository {
+import com.hemonexus.model.BloodRequest;
+import com.hemonexus.model.BloodRequest.Status;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
+@Repository
+public interface BloodRequestRepository
+        extends JpaRepository<BloodRequest, Long> {
+
+    List<BloodRequest> findByStatus(Status status);
 }
