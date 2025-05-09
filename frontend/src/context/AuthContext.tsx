@@ -1,33 +1,60 @@
-import { createContext, useContext, useReducer, ReactNode } from "react";
+import React, { createContext, useContext, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import api from '@/api';
 
-interface State { user?: string; roles?: string[]; token?: string; }
-type Action = { type:"LOGIN"; payload:State } | { type:"LOGOUT" };
+interface JwtPayload { roles?: string[] }
 
-const initial: State = {
-  user:  localStorage.getItem("user") || undefined,
-  token: localStorage.getItem("token") || undefined,
-  roles: []
+interface AuthState {
+  token: string | null;
+  role : string | null;
+  user : string | null;
+}
+
+interface AuthCtx extends AuthState {
+  /** returns the first role string so callers can redirect immediately */
+  login (username: string, password: string): Promise<string>;
+  logout(): void;
+}
+
+const AuthContext = createContext<AuthCtx>(null!);
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [state, setState] = useState<AuthState>(() => {
+    const token    = localStorage.getItem('token');
+    if (!token || token === 'undefined') return { token: null, role: null, user: null };
+
+    /* safe-decode: catch corrupted or legacy tokens */
+    let role: string | null = null;
+    try {
+      const { roles } = jwtDecode<JwtPayload>(token);
+      if (roles && roles.length) role = roles[0];
+    } catch { /* ignore – token is bad */ }
+
+    return { token, role, user: null };
+  });
+
+  /* ---------- actions ---------- */
+  const login = async (username: string, password: string): Promise<string> => {
+    const { data } = await api.post('/auth/signin', { username, password });
+    localStorage.setItem('token', data.token);
+
+    const { roles = [] } = jwtDecode<JwtPayload>(data.token);
+    const role = roles[0] ?? null;
+
+    setState({ token: data.token, role, user: data.username });
+    return role ?? '';                               // empty string if backend sent no role
+  };
+
+  const logout = () => {
+    localStorage.clear();
+    setState({ token: null, role: null, user: null });
+  };
+
+  return (
+    <AuthContext.Provider value={{ ...state, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-const Ctx = createContext<{state:State; dispatch:(a:Action)=>void}>({
-  state: initial, dispatch: () => {}
-});
-
-export const AuthProvider = ({children}:{children:ReactNode}) => {
-  const [state, dispatch] = useReducer((s:State,a:Action):State => {
-    switch (a.type) {
-      case "LOGIN":
-        localStorage.setItem("token", a.payload.token!);
-        localStorage.setItem("user",  a.payload.user!);
-        return a.payload;
-      case "LOGOUT":
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        return {};
-      default: return s;
-    }
-  }, initial);
-  return <Ctx.Provider value={{state,dispatch}}>{children}</Ctx.Provider>;
-};
-
-export const useAuth = () => useContext(Ctx);
+export const useAuth = () => useContext(AuthContext);

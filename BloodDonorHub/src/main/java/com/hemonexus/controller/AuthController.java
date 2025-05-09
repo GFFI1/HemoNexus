@@ -1,16 +1,12 @@
 package com.hemonexus.controller;
 
-import com.hemonexus.dto.JwtResponseDTO;
-import com.hemonexus.dto.LoginDTO;
-import com.hemonexus.dto.MessageResponseDTO;
-import com.hemonexus.dto.SignupDTO;
-import com.hemonexus.model.ERole;
-import com.hemonexus.model.Role;
-import com.hemonexus.model.User;
+import com.hemonexus.dto.*;
+import com.hemonexus.model.*;
 import com.hemonexus.repository.RoleRepository;
 import com.hemonexus.repository.UserRepository;
 import com.hemonexus.security.jwt.JwtUtils;
 import com.hemonexus.security.services.UserDetailsImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -18,114 +14,95 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import jakarta.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
-    @Autowired
-    AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
-
+    private AuthenticationManager authenticationManager;
     @Autowired
-    RoleRepository roleRepository;
-
+    private UserRepository userRepository;
     @Autowired
-    PasswordEncoder encoder;
-
+    private RoleRepository roleRepository;
     @Autowired
-    JwtUtils jwtUtils;
+    private PasswordEncoder encoder;
+    @Autowired
+    private JwtUtils jwtUtils;
 
+    /* ───────────────────────── SIGN-IN ───────────────────────── */
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginDTO) {
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword()));
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO dto) {
 
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtUtils.generateJwtToken(authentication);
+        Authentication auth = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(dto.getUsername(), dto.getPassword()));
 
-        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        String jwt = jwtUtils.generateJwtToken(auth);
+
+        UserDetailsImpl ud = (UserDetailsImpl) auth.getPrincipal();
+        List<String> roles = ud.getAuthorities()
+                .stream().map(a -> a.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponseDTO(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        return ResponseEntity.ok(new JwtResponseDTO(jwt, ud.getId(),
+                ud.getUsername(), ud.getEmail(), roles));
     }
 
+    /* ───────────────────────── SIGN-UP ───────────────────────── */
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO signupDTO) {
-        if (userRepository.existsByUsername(signupDTO.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponseDTO("Error: Username is already taken!"));
-        }
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupDTO dto) {
 
-        if (userRepository.existsByEmail(signupDTO.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponseDTO("Error: Email is already in use!"));
-        }
+        if (userRepository.existsByUsername(dto.getUsername()))
+            return ResponseEntity.badRequest().body(
+                    new MessageResponseDTO("Error: Username is already taken!"));
 
-        // Create new user's account
+        if (userRepository.existsByEmail(dto.getEmail()))
+            return ResponseEntity.badRequest().body(
+                    new MessageResponseDTO("Error: Email is already in use!"));
+
+        /* 1 create user */
         User user = new User();
-        user.setUsername(signupDTO.getUsername());
-        user.setEmail(signupDTO.getEmail());
-        user.setPassword(encoder.encode(signupDTO.getPassword()));
-        user.setFirstName(signupDTO.getFirstName());
-        user.setLastName(signupDTO.getLastName());
-        user.setPhoneNumber(signupDTO.getPhoneNumber());
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        user.setPassword(encoder.encode(dto.getPassword()));
+        user.setFirstName(dto.getFirstName());
+        user.setLastName(dto.getLastName());
+        user.setPhoneNumber(dto.getPhoneNumber());
 
-        Set<String> strRoles = signupDTO.getRoles();
+        /* 2 resolve roles */
         Set<Role> roles = new HashSet<>();
+        Set<String> requested = Optional.ofNullable(dto.getRoles())
+                .orElse(Collections.emptySet());
 
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
+        if (requested.isEmpty()) { // default to DONOR
+            roles.add(fetchRole(ERole.ROLE_DONOR));
         } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
-                        break;
-                    case "mod":
-                        Role modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(modRole);
-                        break;
-                    case "blood_bank_admin":
-                        Role bloodBankAdminRole = roleRepository.findByName(ERole.ROLE_BLOOD_BANK_ADMIN)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(bloodBankAdminRole);
-                        break;
-                    default:
-                        Role userRole = roleRepository.findByName(ERole.ROLE_USER)
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
+            for (String key : requested) {
+                switch (key.toLowerCase()) {
+                    case "admin" -> roles.add(fetchRole(ERole.ROLE_ADMIN));
+                    case "mod" -> roles.add(fetchRole(ERole.ROLE_MODERATOR));
+                    case "blood_bank" -> roles.add(fetchRole(ERole.ROLE_BLOOD_BANK_ADMIN));
+                    case "requester" -> roles.add(fetchRole(ERole.ROLE_REQUESTER));
+                    case "donor" -> roles.add(fetchRole(ERole.ROLE_DONOR));
+                    default -> roles.add(fetchRole(ERole.ROLE_DONOR));
                 }
-            });
+            }
         }
 
         user.setRoles(roles);
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponseDTO("User registered successfully!"));
+    }
+
+    /* ───────────────────────── helper ───────────────────────── */
+    private Role fetchRole(ERole eRole) {
+        return roleRepository.findByName(eRole)
+                .orElseThrow(() -> new RuntimeException("Error: role %s not found".formatted(eRole)));
     }
 }
