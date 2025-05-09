@@ -11,29 +11,25 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/blood-requests")
-@RequiredArgsConstructor
+@RestController @RequestMapping("/blood-requests") @RequiredArgsConstructor
 public class BloodRequestController {
-    private final BloodRequestService svc;
+  private final BloodRequestService svc;
 
-    @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
-    public List<BloodRequestDTO> all() {
-        return svc.getAll();
-    }
+  @GetMapping
+  @PreAuthorize("hasRole('ADMIN')")
+  public List<BloodRequestDTO> all() { return svc.getAll(); }
 
-    @PostMapping
-    @PreAuthorize("hasRole('REQUESTER')")
-    public ResponseEntity<BloodRequestDTO> create(@Valid @RequestBody BloodRequestDTO d) {
-        return ResponseEntity.ok(svc.create(d));
-    }
+  @PostMapping
+  @PreAuthorize("hasRole('REQUESTER')")
+  public ResponseEntity<BloodRequestDTO> create(@Valid @RequestBody BloodRequestDTO d){
+    return ResponseEntity.ok(svc.create(d));
+  }
 
-    @PatchMapping("/{id}/status")
-    @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<BloodRequestDTO> setStatus(
-            @PathVariable Long id,
-            @RequestParam Status status) {
-        return ResponseEntity.ok(svc.updateStatus(id, status));
-    }
+  @PatchMapping("/{id}/status")
+  @PreAuthorize("hasRole('ADMIN')")
+  public ResponseEntity<BloodRequestDTO> setStatus(
+          @PathVariable Long id,
+          @RequestParam Status status){
+    return ResponseEntity.ok(svc.updateStatus(id,status));
+  }
 }
