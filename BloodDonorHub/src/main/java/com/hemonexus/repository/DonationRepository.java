@@ -14,6 +14,8 @@ import java.util.List;
 public interface DonationRepository extends JpaRepository<Donation, Long> {
     List<Donation> findByDonorId(Long donorId);
 
+    List<Donation> findByDonor_User_Id(Long userId);
+
     List<Donation> findByBloodBankId(Long bloodBankId);
 
     @Query("SELECT d FROM Donation d WHERE d.donationDate BETWEEN ?1 AND ?2")

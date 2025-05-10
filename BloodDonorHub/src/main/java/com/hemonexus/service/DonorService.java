@@ -1,10 +1,14 @@
 package com.hemonexus.service;
 
+import com.hemonexus.dto.DonationDTO;
 import com.hemonexus.dto.DonorDTO;
 import com.hemonexus.model.Donor;
 import com.hemonexus.model.User;
+import com.hemonexus.repository.DonationRepository;
 import com.hemonexus.repository.DonorRepository;
 import com.hemonexus.repository.UserRepository;
+import com.hemonexus.util.AuthUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +24,9 @@ import java.util.stream.Collectors;
 public class DonorService {
     @Autowired
     private DonorRepository donorRepository;
+
+    @Autowired
+    private DonationRepository donationRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -43,6 +50,40 @@ public class DonorService {
     public List<DonorDTO> getDonorsByBloodType(String bloodType) {
         return donorRepository.findByBloodType(bloodType).stream()
                 .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<DonationDTO> listOwnHistory() {
+        Long uid = AuthUtils.currentUserId();
+
+        return donationRepository.findByDonor_User_Id(uid)
+                .stream()
+                .map(d -> {
+                    DonationDTO dto = new DonationDTO();
+
+                    dto.setId(d.getId());
+                    dto.setDonorId(d.getDonor().getId());
+                    dto.setBloodBankId(d.getBloodBank().getId());
+                    dto.setBloodType(d.getBloodType());
+                    dto.setQuantity(d.getQuantity()); // matches entity
+                    dto.setDonationDate(d.getDonationDate());
+                    dto.setStatus(d.getStatus().name());
+                    dto.setNotes(d.getNotes());
+
+                    dto.setDonorName(
+                            d.getDonor().getFirstName() + " " + d.getDonor().getLastName());
+                    dto.setBloodBankName(d.getBloodBank().getName());
+
+                    dto.setHemoglobinLevel(d.getHemoglobinLevel());
+                    dto.setPulseRate(d.getPulseRate());
+                    dto.setBloodPressure(d.getBloodPressure());
+                    dto.setBodyTemperature(d.getBodyTemperature());
+
+                    dto.setCreatedAt(d.getCreatedAt());
+                    dto.setUpdatedAt(d.getUpdatedAt());
+
+                    return dto; // explicit return type
+                })
                 .collect(Collectors.toList());
     }
 

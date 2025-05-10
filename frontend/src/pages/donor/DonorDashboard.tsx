@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import api from '@/api';
 
-const DonorDashboard: React.FC = () => (
-  <section className="p-6">
-    <h1 className="text-2xl font-semibold mb-4">Donor Dashboard</h1>
-    <p className="text-gray-600">Welcome!  Your next eligible donation date is shown below.</p>
-    {/* replace with real stats when API is ready */}
-    <div className="mt-6 grid sm:grid-cols-3 gap-4">
-      {['Total Donations','Last Donation','Next Eligible'].map((t,i)=>(
-        <div key={i} className="rounded-lg border p-4 text-center">
-          <p className="text-sm text-gray-500">{t}</p>
-          <p className="text-3xl font-bold">0</p>
+interface Stat { total: number; last: string; next: string }
+
+export default function DonorDashboard() {
+  const [s, setS] = useState<Stat>({ total: 0, last: '-', next: '-' });
+
+  useEffect(() => {
+    api.get('/donor/dashboard').then(r => setS(r.data));
+  }, []);
+
+  return (
+    <section className="p-6 space-y-6">
+      <h1 className="text-2xl font-semibold">Donor Dashboard</h1>
+      <p className="text-sm text-gray-600">
+        Welcome! Your next eligible donation date is shown below.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div className="card text-center">
+          <p className="text-gray-500">Total Donations</p>
+          <p className="text-3xl font-semibold mt-1">{s.total}</p>
         </div>
-      ))}
-    </div>
-  </section>
-);
 
-export default DonorDashboard;
+        <div className="card text-center">
+          <p className="text-gray-500">Last Donation</p>
+          <p className="text-3xl font-semibold mt-1">{s.last}</p>
+        </div>
+
+        <div className="card text-center">
+          <p className="text-gray-500">Next Eligible</p>
+          <p className="text-3xl font-semibold mt-1">{s.next}</p>
+        </div>
+      </div>
+    </section>
+  );
+}

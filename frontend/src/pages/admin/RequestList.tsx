@@ -1,49 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React,{useEffect,useState} from 'react';
+import {DataGrid,GridColDef} from '@mui/x-data-grid';
 import api from '@/api';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Button } from '@/components/ui/button';
 
-type Row = { id:number; requester:string; bloodType:string; units:number;
-             urgency:string; hospital:string; location:string };
+type Row={id:number; requester:string; bloodType:string; unitsNeeded:number;
+          urgencyLevel:string; hospitalName:string; location:string};
 
-export default function RequestList() {
-  const [rows, setRows] = useState<Row[]>([]);
-  const pull = () => api.get('/admin/requests').then(r => setRows(r.data));
+export default function RequestList(){
+  const [rows,setRows]=useState<Row[]>([]);
+  const pull = ()=> api.get('/admin/requests').then(r=>setRows(r.data));
   useEffect(()=>{ pull(); },[]);
 
-  const update = (id:number,status:string)=>
-    api.put(`/admin/requests/${id}`,{status})
-       .then(()=> setRows(rows.filter(r=>r.id!==id)));
+  const patch=(id:number,s:string)=> api
+    .put(`/admin/requests/${id}`,{status:s}).then(pull);
 
   const cols:GridColDef[]=[
-    {field:'requester',headerName:'By',width:110},
-    {field:'bloodType',headerName:'Type',width:80},
-    {field:'units',headerName:'Units',width:80},
-    {field:'urgency',headerName:'Urgency',width:100},
-    {field:'hospital',headerName:'Hospital',width:150},
-    {field:'location',headerName:'Location',width:150},
-    {
-      field:'action',headerName:'',width:170,
-      renderCell:({row})=>(
-        <>
-          <Button size="sm" onClick={()=>update(row.id,'ACCEPTED')}>Accept</Button>
-          <Button size="sm" variant="destructive"
-                  onClick={()=>update(row.id,'DECLINED')}>Decline</Button>
-        </>
-      )
-    }
+    {field:'requester',headerName:'By',minWidth:110},
+    {field:'bloodType',headerName:'Type',minWidth:70},
+    {field:'unitsNeeded',headerName:'Units',minWidth:80},
+    {field:'urgencyLevel',headerName:'Urgency',minWidth:100},
+    {field:'hospitalName',headerName:'Hospital',minWidth:150},
+    {field:'location',headerName:'Location',minWidth:140},
+    {field:'x',headerName:'',minWidth:160,renderCell:({row})=>(
+      <>
+        <button className="btn-sm mr-2" onClick={()=>patch(row.id,'ACCEPTED')}>Accept</button>
+        <button className="btn-sm btn-outline" onClick={()=>patch(row.id,'CANCELLED')}>Cancel</button>
+      </>
+    )}
   ];
 
-  return (
+  return(
     <section className="p-6">
-      <h1 className="text-2xl font-semibold mb-4">Pending Requests</h1>
-      <DataGrid
-        rows={rows}
-        columns={cols}
-        autoHeight
-        pageSizeOptions={[5,10,25]}
-        paginationModel={{ pageSize:10, page:0 }}
-      />
-    </section>
-  );
+      <div className="card">
+        <h2 className="card-header">Pending Requests</h2>
+        <DataGrid rows={rows} columns={cols} autoHeight
+                  pageSizeOptions={[5,10,25]} paginationModel={{page:0,pageSize:10}}/>
+      </div>
+    </section>);
 }

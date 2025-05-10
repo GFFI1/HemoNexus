@@ -26,6 +26,7 @@ import RequesterLayout    from '@/layouts/RequesterLayout';
 import RequesterDashboard from '@/pages/requester/RequesterDashboard';
 import NewRequest         from '@/pages/requester/NewRequest';
 import RequestStatus      from '@/pages/requester/RequestStatus';
+ // Adjusted path to match relative location
 
 export default function App() {
   return (
@@ -39,9 +40,11 @@ export default function App() {
           {/* ───── protected & role-aware ───── */}
           <Route element={<RequireAuth />}>
 
+
+
             {/* ADMIN branch */}
             <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<Navigate to="dashboard" replace />} />
+            <Route index element={<Navigate to="donors" replace />} />
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="requests"  element={<RequestList />} />
               <Route path="donors"     element={<DonorList />} />

@@ -1,24 +1,18 @@
-import axios from "axios";
+import axios from 'axios';
 
+/**
+ * ONE place to set the backend root.
+ * The Spring app already adds `/api` via `server.servlet.context-path`,
+ * so we include it here and omit `/api` in every individual call.
+ */
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL
+  baseURL: 'http://localhost:8080/api'
 });
 
 api.interceptors.request.use(cfg => {
-  const t = localStorage.getItem("token");
-  if (t) cfg.headers.Authorization = `Bearer ${t}`;
+  const token = localStorage.getItem('token');
+  if (token) cfg.headers.Authorization = `Bearer ${token}`;
   return cfg;
 });
 
-api.interceptors.response.use(
-  r => r,
-  e => {
-    if (e.response?.status === 401) {
-      localStorage.clear();
-      window.location.href = "/login";
-    }
-    return Promise.reject(e);
-  }
-);
-console.log("API URL:", import.meta.env.VITE_API_URL);
 export default api;

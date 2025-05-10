@@ -2,8 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-/* simple input style for forms */
-.input {
-  @apply w-full rounded-md border px-3 py-2 text-sm outline-none
-          focus:ring-2 focus:ring-neutral-600;
+/* gradient background for entire app */
+body {
+  @apply bg-gradient-to-br from-neutral-100 to-neutral-200 min-h-screen leading-relaxed;
 }
+
+/* ---- cards ---- */
+.card        {@apply rounded-xl bg-white shadow p-6;}
+.card-header {@apply text-lg font-semibold mb-4;}
+
+/* ---- buttons ---- */
+.btn  {@apply inline-flex items-center justify-center rounded-md
+  bg-indigo-600 px-4 py-2 text-white text-sm
+  hover:bg-indigo-600/90 transition disabled:opacity-50;}
+.btn-outline {@apply border border-indigo-600 text-indigo-600 bg-transparent
+        hover:bg-indigo-600 hover:text-white;}
+
+
+.btn-sm      {@apply btn px-3 py-1 text-xs;}
+
+/* ---- data-grid tweaks ---- */
+.MuiDataGrid-columnHeader { @apply text-sm font-semibold; }
+.MuiDataGrid-cell         { @apply text-sm; }
+.MuiDataGrid-virtualScroller::-webkit-scrollbar {display:none;width:0;height:0;}

@@ -8,6 +8,7 @@ com\hemonexus\controller\UserController.class
 com\hemonexus\service\UserServiceImpl.class
 com\hemonexus\exception\GlobalExceptionHandler.class
 com\hemonexus\controller\AdminController.class
+com\hemonexus\util\AuthUtils.class
 com\hemonexus\dto\LoginDTO.class
 com\hemonexus\security\jwt\AuthEntryPointJwt.class
 com\hemonexus\controller\BloodBankController.class
@@ -43,6 +44,7 @@ com\hemonexus\repository\BloodInventoryRepository.class
 com\hemonexus\controller\AuthController.class
 com\hemonexus\service\BloodRequestService.class
 com\hemonexus\exception\ErrorDetails.class
+com\hemonexus\controller\RequesterController.class
 com\hemonexus\repository\DonorRepository.class
 com\hemonexus\model\User.class
 com\hemonexus\service\BloodInventoryService.class

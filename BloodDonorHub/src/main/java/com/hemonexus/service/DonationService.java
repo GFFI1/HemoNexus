@@ -128,7 +128,7 @@ public class DonationService {
         donation.setDonationDate(dto.getDonationDate());
 
         // Use quantity instead of quantityML
-        donation.setQuantity(dto.getQuantityML().doubleValue());
+        donation.setQuantity(dto.getQuantity().doubleValue());
 
         donation.setBloodType(dto.getBloodType());
 
@@ -159,7 +159,7 @@ public class DonationService {
         dto.setDonationDate(donation.getDonationDate());
 
         // Convert quantity to quantityML
-        dto.setQuantityML((int) donation.getQuantity().doubleValue());
+        dto.setQuantity((double) donation.getQuantity().doubleValue());
 
         dto.setBloodType(donation.getBloodType());
 

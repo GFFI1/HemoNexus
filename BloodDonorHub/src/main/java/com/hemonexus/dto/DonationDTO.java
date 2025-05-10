@@ -25,7 +25,7 @@ public class DonationDTO {
     private String bloodType;
 
     @NotNull
-    private Integer quantityML;
+    private Double quantity;
 
     @NotNull
     @PastOrPresent
@@ -37,7 +37,6 @@ public class DonationDTO {
     private String bloodBankName;
 
     // Additional fields needed by service
-    private Double quantity;
     private String hemoglobinLevel;
     private String pulseRate;
     private String bloodPressure;
