@@ -16,6 +16,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     long countByRoles_Name(ERole role);
 
-    /* role helpers */
     List<User> findByRoles_Name(ERole roleName);
 }

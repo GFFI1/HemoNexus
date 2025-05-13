@@ -32,7 +32,6 @@ public class BloodBankDTO {
     private String licenseNumber;
     private String operatingHours;
 
-    // Additional fields needed by service
     private String website;
     private String description;
     private Boolean isActive;

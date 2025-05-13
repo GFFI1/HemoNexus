@@ -8,7 +8,6 @@ import java.util.Set;
 
 public interface UserService {
 
-    /* --- CRUD already in your original code ------------------- */
     UserDTO createUser(UserDTO dto, Set<String> roles);
 
     Optional<UserDTO> getUserById(Long id);
@@ -17,10 +16,8 @@ public interface UserService {
 
     boolean deleteUser(Long id);
 
-    /* NEW – for UserController list ---------------------------- */
     List<UserDTO> getAllUsers();
 
-    /* --- Admin extras ----------------------------------------- */
     List<DonorDTO> listDonors();
 
     List<RequesterDTO> listRequesters();

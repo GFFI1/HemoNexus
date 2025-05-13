@@ -36,7 +36,6 @@ public class BloodInventoryDTO {
     private String status;
     private String bloodBankName;
 
-    // Additional fields needed by service
     private Double quantity;
     private Long donationId;
     private String storageLocation;

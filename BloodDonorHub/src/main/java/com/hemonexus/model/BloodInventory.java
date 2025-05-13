@@ -29,7 +29,7 @@ public class BloodInventory {
     private String bloodType;
 
     @Column(nullable = false)
-    private Double quantity; // in milliliters
+    private Double quantity;
 
     @Column(nullable = false)
     private LocalDateTime expirationDate;

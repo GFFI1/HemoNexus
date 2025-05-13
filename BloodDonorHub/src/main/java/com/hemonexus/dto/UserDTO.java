@@ -31,13 +31,12 @@ public class UserDTO {
     private boolean active;
     private Set<String> roles;
 
-    // Additional fields needed by service
     private String city;
     private String password;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    public String getName() { // used by UserServiceImpl
+    public String getName() {
         return (firstName == null ? "" : firstName) + " " + (lastName == null ? "" : lastName);
     }
 

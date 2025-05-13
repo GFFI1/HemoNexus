@@ -1,5 +1,5 @@
 import { useAuth } from '@/context/AuthContext';
-import { Button } from '@/components/ui/button'; // Adjust the path based on your project structure
+import { Button } from '@/components/ui/button'; 
 import { Outlet } from 'react-router-dom';
 
 export default function DonorLayout(){

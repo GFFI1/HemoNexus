@@ -12,7 +12,6 @@ public class RequesterDTO {
     private String city;
     private Integer totalRequests;
 
-    /* compatibility with old code expecting setUsername -------- */
     public void setUsername(String name) {
         this.name = name;
     }

@@ -19,7 +19,7 @@ public class RequesterController {
 
     @GetMapping("/requests")
     public List<BloodRequestDTO> own() {
-        return svc.getAll(); // replace with svc.listOwn(userId) if you filter by user
+        return svc.getAll();
     }
 
     @PostMapping("/requests")

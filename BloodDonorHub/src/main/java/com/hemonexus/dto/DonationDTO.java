@@ -36,7 +36,6 @@ public class DonationDTO {
     private String donorName;
     private String bloodBankName;
 
-    // Additional fields needed by service
     private String hemoglobinLevel;
     private String pulseRate;
     private String bloodPressure;

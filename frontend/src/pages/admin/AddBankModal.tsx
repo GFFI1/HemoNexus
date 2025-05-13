@@ -7,7 +7,7 @@ export default function AddBankModal({onClose}:{onClose:()=>void}) {
 
   async function submit(e:React.FormEvent){
     e.preventDefault();
-    await api.post('/admin/blood-banks',{ name, city, managerId:1 }); // manager=admin
+    await api.post('/admin/blood-banks',{ name, city, managerId:1 }); 
     onClose();
   }
 

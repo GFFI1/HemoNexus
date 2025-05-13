@@ -55,7 +55,6 @@ public class BloodBank {
     @OneToMany(mappedBy = "bloodBank", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations = new ArrayList<>();
 
-    // src/main/java/com/hemonexus/model/BloodBank.java
     @OneToMany(mappedBy = "bloodBank", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BloodRequest> bloodRequests = new ArrayList<>();
 

@@ -82,13 +82,13 @@ public class DonorService {
                     dto.setCreatedAt(d.getCreatedAt());
                     dto.setUpdatedAt(d.getUpdatedAt());
 
-                    return dto; // explicit return type
+                    return dto;
                 })
                 .collect(Collectors.toList());
     }
 
     public List<DonorDTO> getEligibleDonorsByBloodType(String bloodType) {
-        LocalDate minDate = LocalDate.now().minusMonths(3); // Assuming donors are eligible after 3 months
+        LocalDate minDate = LocalDate.now().minusMonths(3);
         return donorRepository.findEligibleDonorsByBloodType(bloodType, minDate).stream()
                 .map(this::convertToDTO)
                 .collect(Collectors.toList());

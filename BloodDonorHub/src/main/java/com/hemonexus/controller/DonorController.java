@@ -15,7 +15,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/donor") // singular, no /api (context-path covers it)
+@RequestMapping("/donor")
 @RequiredArgsConstructor
 public class DonorController {
 
@@ -27,8 +27,6 @@ public class DonorController {
     public List<DonationDTO> ownHistory() {
         return donorService.listOwnHistory();
     }
-
-    /* ---------- everything you had, unchanged except prefix ---------- */
 
     @GetMapping
     public ResponseEntity<Page<DonorDTO>> all(Pageable pageable) {

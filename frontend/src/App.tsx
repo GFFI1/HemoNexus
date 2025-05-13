@@ -2,31 +2,25 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from '@/context/AuthContext';
 import RequireAuth from '@/components/RequireAuth';
 
-/* public pages */
 import Login    from '@/pages/Login';
 import Register from '@/pages/Register';
 
-/* error page */
 import NotFound from '@/pages/NotFound';
 
-/* admin pages + layout */
 import AdminLayout     from '@/layouts/AdminLayout';
 import AdminDashboard  from '@/pages/admin/AdminDashboard';
 import RequestList     from '@/pages/admin/RequestList';
 import DonorList       from '@/pages/admin/DonorList';
 import RequesterList   from '@/pages/admin/RequesterList';
 
-/* donor pages + layout */
 import DonorLayout       from '@/layouts/DonorLayout';
 import DonorDashboard    from '@/pages/donor/DonorDashboard';
 import DonationHistory   from '@/pages/donor/DonationHistory';
 
-/* requester pages + layout */
 import RequesterLayout    from '@/layouts/RequesterLayout';
 import RequesterDashboard from '@/pages/requester/RequesterDashboard';
 import NewRequest         from '@/pages/requester/NewRequest';
 import RequestStatus      from '@/pages/requester/RequestStatus';
- // Adjusted path to match relative location
 
 export default function App() {
   return (

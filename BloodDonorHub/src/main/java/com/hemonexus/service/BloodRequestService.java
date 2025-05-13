@@ -20,7 +20,6 @@ public class BloodRequestService {
     private final BloodRequestRepository repo;
     private final UserRepository userRepo;
 
-    /* ---------------- public API ---------------- */
 
     public List<BloodRequestDTO> getAll() {
         return repo.findAll()
@@ -34,9 +33,7 @@ public class BloodRequestService {
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
-
-    /** returns only requests whose status == PENDING */
-    @Transactional(readOnly = true) // <-- IMPLEMENTED
+// <-- IMPLEMENTED
     public List<BloodRequestDTO> findPending() {
         return repo.findByStatus(Status.PENDING)
                 .stream().map(this::toDTO)

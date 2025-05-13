@@ -10,5 +10,5 @@ public class UserSummaryDTO {
     private Long id;
     private String name;
     private String city;
-    private long total; // for donors = donations, for requesters = requests
+    private long total;
 }

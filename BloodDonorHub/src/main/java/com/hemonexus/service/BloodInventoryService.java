@@ -29,6 +29,7 @@ public class BloodInventoryService {
 
     @Autowired
     private DonationRepository donationRepository;
+    // didn't have time to implement this
 
     public List<BloodInventoryDTO> getAllInventory() {
         return bloodInventoryRepository.findAll().stream()
@@ -107,18 +108,16 @@ public class BloodInventoryService {
                 });
     }
 
-    @Scheduled(cron = "0 0 0 * * *") // Run at midnight every day
+    @Scheduled(cron = "0 0 0 * * *")
     @Transactional
     public void checkExpiringInventory() {
-        LocalDateTime expirationDate = LocalDateTime.now().plusDays(7); // Get items expiring in 7 days
+        LocalDateTime expirationDate = LocalDateTime.now().plusDays(7);
         List<BloodInventory> expiringItems = bloodInventoryRepository.findExpiringInventory(expirationDate);
 
-        // Here you would trigger notifications or generate reports
-        // For this example, we'll just mark very close to expiration items (1 day)
         LocalDateTime oneDayExpiration = LocalDateTime.now().plusDays(1);
         for (BloodInventory item : expiringItems) {
             if (item.getExpirationDate().isBefore(oneDayExpiration)) {
-                // Consider special handling for very close to expiration
+
             }
         }
     }

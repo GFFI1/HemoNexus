@@ -34,7 +34,7 @@ public class BloodRequest {
 
     @ManyToOne
     @JoinColumn(name = "requester_id", nullable = false)
-    private User requester; // => ROLE_REQUESTER
+    private User requester;
 
     @Column(nullable = false)
     private String bloodType;

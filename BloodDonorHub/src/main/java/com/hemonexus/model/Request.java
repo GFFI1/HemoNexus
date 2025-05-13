@@ -16,8 +16,8 @@ public class Request {
 
     private String bloodType;
     private int units;
-    private String urgency; // "Normal" / "Urgent"
-    private String status; // "OPEN" / "ACCEPTED" / "CLOSED"
+    private String urgency;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

@@ -22,7 +22,7 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     long countByDonor_User(User user);
 
-    long countByDonor_User_Id(Long userId); // <— new
+    long countByDonor_User_Id(Long userId);
 
     @Query("SELECT d FROM Donation d WHERE d.donationDate BETWEEN ?1 AND ?2")
     List<Donation> findByDonationDateBetween(LocalDateTime startDate, LocalDateTime endDate);

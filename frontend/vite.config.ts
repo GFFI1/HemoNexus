@@ -19,7 +19,6 @@ export default defineConfig({
       input: "./index.html",
     },
   },
-  // Add this to handle React Router fallback
   preview: {
     port: 5173,
   },

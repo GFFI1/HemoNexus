@@ -24,10 +24,10 @@ public class BloodRequestController {
 
   private final BloodRequestService svc;
 
-  /** list THIS requester’s own requests (optional for your UI) */
+  /** list THIS requester’s own requests */
   @GetMapping("/requests")
   public List<BloodRequestDTO> myRequests(@AuthenticationPrincipal UserDetailsImpl me) {
-    return svc.findByRequester(me.getId()); // you already have this in the service
+    return svc.findByRequester(me.getId());
   }
 
   /** create a new blood request */

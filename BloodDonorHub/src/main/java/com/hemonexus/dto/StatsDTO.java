@@ -8,5 +8,5 @@ import lombok.Data;
 public class StatsDTO {
     private long donors;
     private long banks;
-    private long units; // total donated quantity (ml)
+    private long units;
 }

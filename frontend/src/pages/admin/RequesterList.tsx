@@ -11,7 +11,7 @@ export default function RequesterList() {
 
   const cols: GridColDef[] = [
     { field: 'id', headerName: '#', width: 70 },
-    { field: 'name', headerName: 'Name', flex: 1 },   // <─ 'name' field
+    { field: 'name', headerName: 'Name', flex: 1 },   
     { field: 'city', headerName: 'City', flex: 1 },
     { field: 'totalRequests', headerName: 'Requests', width: 120 },
   ];

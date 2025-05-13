@@ -17,8 +17,7 @@ public class SignupDTO {
     @Size(min = 3, max = 50)
     private String username;
 
-    private String role; // "donor", "requester", "admin"
-
+    private String role;
     @NotBlank
     @Size(max = 100)
     @Email

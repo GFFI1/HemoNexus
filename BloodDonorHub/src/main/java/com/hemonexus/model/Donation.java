@@ -33,7 +33,7 @@ public class Donation {
     private LocalDateTime donationDate;
 
     @Column(nullable = false)
-    private Double quantity; // in milliliters
+    private Double quantity;
 
     @Column(nullable = false)
     private String bloodType;

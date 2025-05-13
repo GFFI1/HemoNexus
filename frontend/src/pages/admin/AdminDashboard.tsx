@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import api from '@/api';
-import AddBankModal from './AddBankModal';   // ← NEW component
+import AddBankModal from './AddBankModal';   
 
 
 interface Stats { donors:number; banks:number; units:number }
 export default function AdminDashboard(){
   const [stats,setStats]=useState<Stats|null>(null);
   const [err ,setErr ] = useState('');
-  const [show,setShow] = useState(false);   // modal flag
-
+  const [show,setShow] = useState(false);   
 
   useEffect(() => {
     api.get('/stats')

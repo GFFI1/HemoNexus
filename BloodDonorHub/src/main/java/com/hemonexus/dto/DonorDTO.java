@@ -46,7 +46,6 @@ public class DonorDTO {
     private String medicalNotes;
     private Long userId;
 
-    // Additional fields needed by service
     private Double weight;
     private Boolean isEligible;
     private LocalDate lastDonationDate;

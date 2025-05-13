@@ -7,5 +7,5 @@ public class RequestDTO {
     private Long bloodBankId;
     private String bloodType;
     private int units;
-    private String urgency; // "Normal" | "Urgent"
+    private String urgency;
 }
