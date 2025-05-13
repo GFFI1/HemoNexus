@@ -1,40 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import api from '@/api';
+import AddBankModal from './AddBankModal';   // ← NEW component
 
-interface Stats { donors: number; banks: number; units: number }
 
-export default function AdminDashboard() {
-  const [stats, setStats] = useState<Stats>({ donors: 0, banks: 0, units: 0 });
+interface Stats { donors:number; banks:number; units:number }
+export default function AdminDashboard(){
+  const [stats,setStats]=useState<Stats|null>(null);
+  const [err ,setErr ] = useState('');
+  const [show,setShow] = useState(false);   // modal flag
+
 
   useEffect(() => {
-    api.get('/admin/stats').then(r => setStats(r.data));
-  }, []);
+    api.get('/stats')
+       .then(r => setStats(r.data))
+       .catch(() => setErr('Backend /stats not available'));   
+  },[]);
+
+  if (err)        return <p className="p-6 text-red-600">{err}</p>;
+  if (!stats)     return <p className="p-6">Loading…</p>;
 
   return (
     <section className="p-6 space-y-6">
-      <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
-      <p className="text-sm text-gray-600">Quick statistics &amp; charts go here</p>
+      <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <button className="btn" onClick={()=>setShow(true)}>Add blood bank</button>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        <div className="card text-center">
-          <p className="text-gray-500">Total Donors</p>
-          <p className="text-3xl font-semibold mt-1">{stats.donors}</p>
-        </div>
-
-        <div className="card text-center">
-          <p className="text-gray-500">Active Banks</p>
-          <p className="text-3xl font-semibold mt-1">{stats.banks}</p>
-        </div>
-
-        <div className="card text-center">
-          <p className="text-gray-500">Units in Stock</p>
-          <p className="text-3xl font-semibold mt-1">
-            {stats.units.toLocaleString()} ml
-          </p>
-        </div>
+        
+        <StatCard label="Donors" value={stats.donors}/>
+        <StatCard label="Blood Banks" value={stats.banks}/>
+        <StatCard label="Units (ml)" value={stats.units}/>
+        
+        
       </div>
-
-      <button className="btn">+ Add Blood Bank</button>
+      {show && <AddBankModal onClose={()=>setShow(false)}/>}
     </section>
+  );
+}
+
+function StatCard({label,value}:{label:string,value:number}){
+  return (
+    <div className="bg-white rounded shadow p-6 text-center">
+      <div className="text-sm text-gray-500">{label}</div>
+      <div className="text-3xl font-bold text-purple-800">{value}</div>
+    </div>
   );
 }

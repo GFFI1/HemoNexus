@@ -12,4 +12,7 @@ public interface BloodRequestRepository
         extends JpaRepository<BloodRequest, Long> {
 
     List<BloodRequest> findByStatus(Status status);
+
+    List<BloodRequest> findByRequester_Id(Long requesterId);
+
 }

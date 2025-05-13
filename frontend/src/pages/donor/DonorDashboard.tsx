@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import api from '@/api';
 
-interface Stat { total: number; last: string; next: string }
+interface Stat { total:number; last:string; next:string }
 
 export default function DonorDashboard() {
-  const [s, setS] = useState<Stat>({ total: 0, last: '-', next: '-' });
-
-  useEffect(() => {
-    api.get('/donor/dashboard').then(r => setS(r.data));
-  }, []);
+  const [s,setS]=useState<Stat>({total:0,last:'-',next:'-'});
+  useEffect(()=>{ api.get('/donor/dashboard').then(r=>setS(r.data)); },[]);
 
   return (
     <section className="p-6 space-y-6">
@@ -22,12 +19,10 @@ export default function DonorDashboard() {
           <p className="text-gray-500">Total Donations</p>
           <p className="text-3xl font-semibold mt-1">{s.total}</p>
         </div>
-
         <div className="card text-center">
           <p className="text-gray-500">Last Donation</p>
           <p className="text-3xl font-semibold mt-1">{s.last}</p>
         </div>
-
         <div className="card text-center">
           <p className="text-gray-500">Next Eligible</p>
           <p className="text-3xl font-semibold mt-1">{s.next}</p>

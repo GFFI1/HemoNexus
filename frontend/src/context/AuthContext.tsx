@@ -31,19 +31,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   /* ------------ actions ------------ */
   const login = async (username: string, password: string) => {
-    const { data } = await api.post('/auth/signin', { username, password });
-    localStorage.setItem('token', data.token);
-
-    // Prefer role list from the response ↓↓↓
-    const roleFromResp: string | undefined = data.roles?.[0];
-    const { roles = [], authorities = [] } = jwtDecode<JwtPayload>(data.token);
-    const roleDecoded = roles[0] ?? authorities[0] ?? null;
-
-    const role = roleFromResp ?? roleDecoded;
-    setState({ token: data.token, role, user: data.username });
-
-    window.location.replace(routeFor[role ?? 'ROLE_DONOR']);
+    try {
+      const { data } = await api.post('/auth/signin', { username, password });
+      localStorage.setItem('token', data.token);
+      console.log('Login successful. Token:', data.token);
+      console.log('User data:', {
+        username: data.username,
+        roles: data.roles,
+        ...data,
+      });
+  
+      const roleFromResp: string | undefined = data.roles?.[0];
+      const { roles = [], authorities = [] } = jwtDecode<JwtPayload>(data.token);
+      const roleDecoded = roles[0] ?? authorities[0] ?? null;
+  
+      const role = roleFromResp ?? roleDecoded;
+      setState({ token: data.token, role, user: data.username });
+  
+      window.location.replace(routeFor[role ?? 'ROLE_DONOR']);
+    } catch (error: any) {
+      console.error('Login failed:', error.response?.data || error.message || error);
+      alert('Login failed. Please check your credentials and try again.');
+    }
   };
+  ;
 
   const logout = () => {
     localStorage.removeItem('token');

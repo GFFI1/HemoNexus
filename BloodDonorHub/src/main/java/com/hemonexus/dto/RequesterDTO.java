@@ -8,7 +8,12 @@ import lombok.*;
 @Builder
 public class RequesterDTO {
     private Long id;
-    private String username;
+    private String name; // full name for admin table
     private String city;
     private Integer totalRequests;
+
+    /* compatibility with old code expecting setUsername -------- */
+    public void setUsername(String name) {
+        this.name = name;
+    }
 }

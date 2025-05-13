@@ -28,6 +28,13 @@ public class BloodRequestService {
                 .collect(Collectors.toList());
     }
 
+    public List<BloodRequestDTO> findByRequester(Long requesterId) {
+        return repo.findByRequester_Id(requesterId)
+                .stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
     /** returns only requests whose status == PENDING */
     @Transactional(readOnly = true) // <-- IMPLEMENTED
     public List<BloodRequestDTO> findPending() {

@@ -3,6 +3,8 @@ package com.hemonexus.repository;
 import com.hemonexus.model.Donation;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import com.hemonexus.model.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,10 +20,21 @@ public interface DonationRepository extends JpaRepository<Donation, Long> {
 
     List<Donation> findByBloodBankId(Long bloodBankId);
 
+    long countByDonor_User(User user);
+
+    long countByDonor_User_Id(Long userId); // <— new
+
     @Query("SELECT d FROM Donation d WHERE d.donationDate BETWEEN ?1 AND ?2")
     List<Donation> findByDonationDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
     Page<Donation> findByStatus(Donation.DonationStatus status, Pageable pageable);
+
+    @Query("""
+            select coalesce(sum(d.quantity), 0)
+            from   Donation d
+            where  d.status = com.hemonexus.model.Donation.DonationStatus.COMPLETED
+            """)
+    long sumQuantityByStatusCompleted();
 
     @Query("SELECT d FROM Donation d WHERE d.bloodBank.id = ?1 AND d.status = ?2")
     List<Donation> findByBloodBankAndStatus(Long bloodBankId, Donation.DonationStatus status);

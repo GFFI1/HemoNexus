@@ -30,9 +30,19 @@ public class UserDTO {
     private String phoneNumber;
     private boolean active;
     private Set<String> roles;
-    
+
     // Additional fields needed by service
+    private String city;
     private String password;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    public String getName() { // used by UserServiceImpl
+        return (firstName == null ? "" : firstName) + " " + (lastName == null ? "" : lastName);
+    }
+
+    public String getCity() {
+        return city;
+    }
+
 }

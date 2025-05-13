@@ -48,6 +48,10 @@ public class BloodBank {
     @OneToMany(mappedBy = "bloodBank", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<BloodInventory> inventory = new ArrayList<>();
 
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private User manager;
+
     @OneToMany(mappedBy = "bloodBank", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Donation> donations = new ArrayList<>();
 

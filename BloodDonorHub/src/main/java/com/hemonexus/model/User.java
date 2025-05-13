@@ -34,6 +34,9 @@ public class User {
     @Column(nullable = false)
     private String password;
 
+    @Column
+    private String city;
+
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -46,6 +49,25 @@ public class User {
     @CreatedDate
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Donor donor;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public Donor getDonor() {
+        return donor;
+    } // ← add getter
+
+    public void setDonor(Donor donor) {
+        this.donor = donor;
+    }
 
     @LastModifiedDate
     @Column(nullable = false)

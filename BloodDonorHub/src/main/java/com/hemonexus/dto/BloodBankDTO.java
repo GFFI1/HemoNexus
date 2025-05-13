@@ -22,6 +22,8 @@ public class BloodBankDTO {
     private String address;
 
     private String city;
+    private Long managerId;
+    private String managerName;
     private String state;
     private String zipCode;
     private String country;
